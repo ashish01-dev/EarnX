@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EarnX - Engineering Wealth for the Creator Economy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#90003e",
+                        "on-primary-container": "#613000",
+                        "on-secondary-fixed": "#410000",
+                        "secondary-fixed": "#ffdad4",
+                        "on-background": "#e5e0ee",
+                        "surface-container-highest": "#35333e",
+                        "on-secondary-container": "#ff9a8a",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#7e0036",
+                        "on-secondary": "#690000",
+                        "background": "#13121b",
+                        "tertiary-container": "#ff80a0",
+                        "surface-container-low": "#1c1a24",
+                        "on-surface-variant": "#ddc1ae",
+                        "surface-tint": "#ffb780",
+                        "on-tertiary-fixed": "#3f0017",
+                        "on-tertiary": "#66002a",
+                        "primary": "#ffb780",
+                        "on-primary": "#4e2600",
+                        "glow-orange": "rgba(255, 137, 6, 0.4)",
+                        "surface-container": "#201e28",
+                        "inverse-surface": "#e5e0ee",
+                        "on-error": "#690005",
+                        "outline-variant": "#564335",
+                        "error-container": "#93000a",
+                        "surface-variant": "#35333e",
+                        "surface-container-high": "#2a2933",
+                        "inverse-primary": "#924c00",
+                        "inverse-on-surface": "#312f39",
+                        "surface-bright": "#3a3842",
+                        "tertiary": "#ffb1c1",
+                        "on-secondary-fixed-variant": "#8d150c",
+                        "text-secondary": "#a7a9be",
+                        "tertiary-fixed-dim": "#ffb1c1",
+                        "on-primary-fixed": "#2f1400",
+                        "text-primary": "#fffffe",
+                        "primary-container": "#ff8906",
+                        "primary-fixed": "#ffdcc4",
+                        "surface-dark": "#16161a",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#13121b",
+                        "on-surface": "#e5e0ee",
+                        "glass-stroke": "rgba(255, 255, 255, 0.12)",
+                        "primary-fixed-dim": "#ffb780",
+                        "outline": "#a58c7b",
+                        "secondary": "#ffb4a8",
+                        "secondary-container": "#8d150c",
+                        "tertiary-fixed": "#ffd9df",
+                        "surface": "#13121b",
+                        "surface-container-lowest": "#0e0d16",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-primary-fixed-variant": "#6f3800"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "section-gap": "120px",
+                        "grid-gutter": "24px",
+                        "card-padding": "32px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Syne"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "display-lg": ["Syne"],
+                        "headline-lg": ["Syne"],
+                        "label-mono": ["JetBrains Mono"],
+                        "display-xl": ["Syne"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "display-xl": ["84px", { "lineHeight": "92px", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #13121b;
+            color: #fffffe;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Mesh Gradient Background */
+        .mesh-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: #13121b;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+        
+        .orb-1 { width: 60vw; height: 60vw; background: #e53170; top: -10vw; left: -10vw; }
+        .orb-2 { width: 50vw; height: 50vw; background: #ff8906; bottom: -10vw; right: -10vw; animation-delay: -5s; }
+        .orb-3 { width: 40vw; height: 40vw; background: #ffb1c1; top: 40vh; left: 30vw; animation-delay: -10s; opacity: 0.1; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5vw, 5vw) scale(1.1); }
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(32, 30, 40, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-panel-heavy {
+            background: rgba(22, 22, 26, 0.8);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Catch light */
+        }
+
+        /* Magnetic Button */
+        .btn-magnetic {
+            background: linear-gradient(135deg, #ff8906, #f25f4c);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        
+        .btn-magnetic::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease-out;
+            pointer-events: none;
+        }
+
+        .btn-magnetic:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .btn-glow-shadow {
+            box-shadow: 0 0 20px rgba(255, 137, 6, 0.4);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #13121b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 177, 193, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 177, 193, 0.6);
+        }
+
+        /* Utilities */
+        .text-gradient-primary {
+            background: linear-gradient(to right, #ffb780, #ffb1c1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .border-gradient {
+            border: 1px solid transparent;
+            background: linear-gradient(#201e28, #201e28) padding-box, linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05)) border-box;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-text-primary">
+<!-- Global Background Level 0 -->
+<div class="mesh-bg">
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+</div>
+<!-- Navigation Shell (TopNavBar from JSON) -->
+<nav class="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-[100] items-center gap-8 min-w-[800px] justify-between bg-surface/60 backdrop-blur-[20px] rounded-full px-6 py-3 border border-glass-stroke shadow-[0_0_20px_rgba(255,137,6,0.15)] shadow-glow-orange/20">
+<div class="font-display-lg text-display-lg bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent !text-[24px] !leading-none font-bold tracking-tight">EarnX</div>
+<div class="flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md hover:text-primary transition-all duration-300" href="#">Home</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-all duration-300" href="#">Methods</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-all duration-300" href="#">Tools</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-all duration-300" href="#">Success Stories</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-all duration-300" href="#">Leaderboard</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-all duration-300" href="#">Community</a>
+</div>
+<button class="btn-magnetic btn-glow-shadow px-6 py-2 rounded-full text-text-primary font-bold font-body-md">Get Started</button>
+</nav>
+<!-- Mobile Nav Anchor (Simplified for layout constraints) -->
+<nav class="md:hidden fixed top-4 left-4 right-4 z-[100] glass-panel rounded-full px-6 py-4 flex justify-between items-center border-gradient">
+<div class="font-display-lg text-display-lg bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent !text-[24px] !leading-none font-bold tracking-tight">EarnX</div>
+<span class="material-symbols-outlined text-text-primary">menu</span>
+</nav>
+<main class="relative z-10 w-full max-w-container-max mx-auto px-4 md:px-grid-gutter pt-32 md:pt-48 pb-section-gap flex flex-col gap-section-gap overflow-hidden">
+<!-- Hero Section -->
+<section class="min-h-[819px] flex flex-col lg:flex-row items-center justify-between gap-12 relative reveal">
+<!-- Content -->
+<div class="flex-1 flex flex-col items-start gap-6 z-10 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-gradient">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-mono text-label-mono text-primary uppercase">#1 AI Powered Money Platform</span>
+</div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-text-primary">
+                    Turn Skills Into <span class="text-gradient-primary">Income.</span><br/>
+                    Earn Smarter. Faster. Limitlessly.
+                </h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-xl">
+                    Deploy AI-driven strategies, leverage high-yield micro-investments, and monetize your digital presence. EarnX is the definitive terminal for the modern creator economy.
+                </p>
+<div class="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full sm:w-auto">
+<button class="w-full sm:w-auto btn-magnetic btn-glow-shadow px-8 py-4 rounded-full text-text-primary font-bold font-body-lg flex items-center justify-center gap-2">
+                        Start Earning
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full sm:w-auto glass-panel px-8 py-4 rounded-full text-text-primary font-body-lg border-gradient hover:bg-surface-container-high transition-colors">
+                        View Methods
+                    </button>
+</div>
+</div>
+<!-- Sidecar Dashboard Mockup -->
+<div class="flex-1 w-full max-w-xl relative">
+<!-- Decorative background glow -->
+<div class="absolute inset-0 bg-primary-container/20 blur-[100px] rounded-full"></div>
+<div class="glass-panel-heavy rounded-xl border-gradient p-6 relative z-10 flex flex-col gap-6 transform lg:rotate-y-[-10deg] perspective-[1000px] shadow-2xl">
+<!-- Dashboard Header -->
+<div class="flex justify-between items-center border-b border-glass-stroke pb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center border border-glass-stroke">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+<div>
+<div class="font-label-mono text-label-mono text-text-secondary">LIVE EARNINGS</div>
+<div class="font-headline-lg text-[24px] text-text-primary leading-none">$12,450.00</div>
+</div>
+</div>
+<div class="px-3 py-1 rounded-full bg-glow-orange text-primary text-xs font-bold font-label-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +14.2%
+                        </div>
+</div>
+<!-- Chart Area -->
+<div class="h-48 relative rounded-lg bg-surface-container-low overflow-hidden border border-glass-stroke flex items-end">
+<!-- Simulated Chart Graph using CSS -->
+<div class="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-primary-container/30 to-transparent"></div>
+<svg class="absolute bottom-0 left-0 w-full h-[80%]" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,100 L0,50 Q25,70 50,30 T100,10 L100,100 Z" fill="rgba(255,137,6,0.1)" stroke="#ff8906" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+<!-- Floating Tooltip -->
+<div class="absolute top-1/4 right-1/4 glass-panel px-3 py-2 rounded-lg border-gradient text-sm">
+<span class="text-primary font-bold">$420</span> today
+                        </div>
+</div>
+<!-- Recent Activity -->
+<div class="flex flex-col gap-3">
+<div class="font-label-mono text-label-mono text-text-secondary">RECENT ACTIVITY</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer border border-transparent hover:border-glass-stroke">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</div>
+<div class="font-body-md text-sm text-text-primary">AI Content Batch</div>
+</div>
+<div class="text-primary font-bold">+$85.00</div>
+</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer border border-transparent hover:border-glass-stroke">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-tertiary/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+</div>
+<div class="font-body-md text-sm text-text-primary">YouTube Shorts Ad Rev</div>
+</div>
+<div class="text-tertiary font-bold">+$12.40</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="reveal flex flex-col gap-12">
+<div class="flex flex-col items-center text-center gap-4 max-w-2xl mx-auto">
+<h2 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-text-primary">Top Earning Methods</h2>
+<p class="font-body-md text-text-secondary">Curated, high-yield strategies actively working for the EarnX community right now.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[280px]">
+<!-- Bento Card 1 (Large) -->
+<div class="md:col-span-8 glass-panel rounded-[24px] border-gradient p-card-padding flex flex-col justify-between relative overflow-hidden group hover:shadow-[0_0_40px_rgba(255,137,6,0.15)] transition-all duration-500">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/5 to-transparent pointer-events-none"></div>
+<!-- Hover Reflection -->
+<div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none"></div>
+<div class="flex justify-between items-start z-10">
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center border-gradient">
+<span class="material-symbols-outlined text-primary text-[24px]">smart_toy</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container text-text-secondary text-xs font-label-mono border border-glass-stroke">HIGH YIELD</span>
+</div>
+<div class="z-10">
+<h3 class="font-headline-lg text-[24px] text-text-primary mb-2 group-hover:text-primary transition-colors">AI Content Generation</h3>
+<p class="font-body-md text-text-secondary line-clamp-2">Leverage LLMs to mass-produce high-quality blog posts, marketing copy, and SEO articles for immediate client delivery.</p>
+</div>
+</div>
+<!-- Bento Card 2 (Small) -->
+<div class="md:col-span-4 glass-panel rounded-[24px] border-gradient p-card-padding flex flex-col justify-between relative overflow-hidden group hover:shadow-[0_0_40px_rgba(255,177,193,0.15)] transition-all duration-500">
+<div class="flex justify-between items-start z-10">
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center border-gradient">
+<span class="material-symbols-outlined text-tertiary text-[24px]">currency_bitcoin</span>
+</div>
+</div>
+<div class="z-10">
+<h3 class="font-headline-lg text-[24px] text-text-primary mb-2 group-hover:text-tertiary transition-colors">Micro-Crypto</h3>
+<p class="font-body-md text-text-secondary">Automated dollar-cost averaging into emerging Web3 assets.</p>
+</div>
+</div>
+<!-- Bento Card 3 (Small) -->
+<div class="md:col-span-4 glass-panel rounded-[24px] border-gradient p-card-padding flex flex-col justify-between relative overflow-hidden group hover:shadow-[0_0_40px_rgba(255,255,255,0.1)] transition-all duration-500">
+<div class="flex justify-between items-start z-10">
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center border-gradient">
+<span class="material-symbols-outlined text-text-primary text-[24px]">play_circle</span>
+</div>
+</div>
+<div class="z-10">
+<h3 class="font-headline-lg text-[24px] text-text-primary mb-2 group-hover:text-text-primary transition-colors">Short-Form Video</h3>
+<p class="font-body-md text-text-secondary">Monetize viral clips on YouTube Shorts and TikTok.</p>
+</div>
+</div>
+<!-- Bento Card 4 (Large) -->
+<div class="md:col-span-8 glass-panel rounded-[24px] border-gradient p-card-padding flex flex-col justify-between relative overflow-hidden group hover:shadow-[0_0_40px_rgba(255,137,6,0.15)] transition-all duration-500">
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50 z-0"></div>
+<div class="flex justify-between items-start z-10">
+<div class="w-12 h-12 rounded-full glass-panel flex items-center justify-center border-gradient">
+<span class="material-symbols-outlined text-primary text-[24px]">storefront</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container text-text-secondary text-xs font-label-mono border border-glass-stroke">TRENDING</span>
+</div>
+<div class="z-10">
+<h3 class="font-headline-lg text-[24px] text-text-primary mb-2 group-hover:text-primary transition-colors">Digital Product Arbitrage</h3>
+<p class="font-body-md text-text-secondary line-clamp-2">Identify high-demand SaaS templates and notions dashboards, acquire resell rights, and distribute via automated funnels.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer JSON Anchor -->
+<footer class="w-full relative overflow-hidden pt-section-gap pb-12 border-t border-glass-stroke bg-surface-dark mt-section-gap">
+<div class="max-w-container-max mx-auto px-grid-gutter flex flex-col gap-12 relative z-10">
+<!-- Footer Content -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1 md:col-span-2">
+<div class="font-display-lg text-[32px] font-bold tracking-tight text-primary mb-4">EarnX</div>
+<p class="font-body-md text-text-secondary max-w-sm">Engineering Wealth for the Creator Economy. The ultimate terminal to turn your digital presence into a tangible asset.</p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="font-label-mono text-label-mono text-text-primary uppercase">Platform</div>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Invest</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Instant Earn</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Video Monetization</a>
+</div>
+<div class="flex flex-col gap-4">
+<div class="font-label-mono text-label-mono text-text-primary uppercase">Legal</div>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-glass-stroke">
+<p class="font-body-md text-sm text-text-secondary">© 2024 EarnX. Engineering Wealth for the Creator Economy.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer transition-colors">public</span>
+<span class="material-symbols-outlined text-text-secondary hover:text-primary cursor-pointer transition-colors">share</span>
+</div>
+</div>
+</div>
+<!-- Faded Brand Logo Background from JSON -->
+<div class="font-display-xl text-[120px] md:text-[200px] font-extrabold opacity-[0.03] absolute bottom-[-40px] left-0 w-full text-center pointer-events-none uppercase tracking-tighter text-white whitespace-nowrap overflow-hidden">
+            CREATE WEALTH
+        </div>
+</footer>
+<script>
+        // Simple Intersection Observer for scroll reveals
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+            
+            // Trigger initial state for items already in view
+            setTimeout(() => {
+                reveals.forEach(reveal => {
+                    const rect = reveal.getBoundingClientRect();
+                    if(rect.top < window.innerHeight) {
+                        reveal.classList.add('active');
+                    }
+                });
+            }, 100);
+        });
+    </script>
+</body></html>

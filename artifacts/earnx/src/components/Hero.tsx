@@ -1,160 +1,325 @@
 import { motion } from "framer-motion";
-import { ArrowRight, PlayCircle, Zap } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { ArrowRight, TrendingUp, Bot, PlayCircle } from "lucide-react";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const fn = (e: MouseEvent) => {
       if (!containerRef.current) return;
-      const { clientX, clientY } = e;
       const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-      const x = (clientX - left) / width;
-      const y = (clientY - top) / height;
-      
-      containerRef.current.style.setProperty('--mouse-x', `${x * 100}%`);
-      containerRef.current.style.setProperty('--mouse-y', `${y * 100}%`);
+      const x = ((e.clientX - left) / width) * 100;
+      const y = ((e.clientY - top) / height) * 100;
+      containerRef.current.style.setProperty("--mx", `${x}%`);
+      containerRef.current.style.setProperty("--my", `${y}%`);
     };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", fn);
+    return () => window.removeEventListener("mousemove", fn);
   }, []);
 
   return (
-    <section 
+    <section
       ref={containerRef}
-      className="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden bg-mesh"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ paddingTop: 160, paddingBottom: 80 }}
     >
-      {/* Interactive mouse glow */}
-      <div 
-        className="absolute inset-0 opacity-30 pointer-events-none transition-opacity duration-300"
+      {/* Mouse-follow glow */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-500"
         style={{
-          background: 'radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsla(32, 100%, 51%, 0.4) 0%, transparent 40%)'
+          background:
+            "radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(255,137,6,0.08), transparent 60%)",
         }}
       />
-      
-      {/* Animated Orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-      <div className="absolute top-1/3 -right-32 w-96 h-96 bg-accent/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
-      <div className="absolute -bottom-32 left-1/2 w-96 h-96 bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
-          {/* Left Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-start text-left"
-          >
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+          {/* Left — Content */}
+          <div className="flex flex-col items-start gap-7">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-primary/30 mb-8"
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border-gradient"
+              style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)" }}
             >
-              <Zap className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-sm font-medium text-primary-foreground tracking-wide">#1 AI Powered Money Platform</span>
+              <span
+                className="w-2 h-2 rounded-full animate-pulse"
+                style={{ background: "#ff8906" }}
+              />
+              <span
+                className="font-mono-label uppercase"
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 12,
+                  letterSpacing: "0.1em",
+                  color: "#ffb780",
+                }}
+              >
+                #1 AI Powered Money Platform
+              </span>
             </motion.div>
 
-            <h1 className="text-6xl md:text-8xl font-display font-bold leading-[1.1] mb-6 text-white tracking-tighter">
-              Turn Skills <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent animate-sweep">
-                Into Income.
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-lg font-light leading-relaxed">
-              Earn smarter. Faster. Limitlessly. The ultimate ecosystem for creators, investors, and side-hustlers to build modern wealth.
-            </p>
+            {/* Headline */}
+            <motion.h1
+              initial={{ opacity: 0, y: 32 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-display"
+              style={{
+                fontFamily: "'Syne', sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(40px, 6vw, 80px)",
+                lineHeight: 1.05,
+                letterSpacing: "-0.03em",
+                color: "#fffffe",
+              }}
+            >
+              Turn Skills Into{" "}
+              <span className="text-gradient-primary">Income.</span>
+              <br />
+              Earn Smarter.
+              <br />
+              Faster.
+              <br />
+              Limitlessly.
+            </motion.h1>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-background font-display font-bold rounded-full flex items-center gap-2 hover:bg-gray-100 transition-colors shadow-[0_0_40px_rgba(255,255,255,0.3)]"
-              >
-                Start Earning <ArrowRight className="w-5 h-5" />
-              </motion.button>
-              
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 glass-panel text-white font-display font-bold rounded-full flex items-center gap-2 hover:bg-white/10 transition-colors border border-white/20"
-              >
-                <PlayCircle className="w-5 h-5 text-primary" /> Watch Demo
-              </motion.button>
-            </div>
-          </motion.div>
+            {/* Body */}
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              style={{
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontSize: 18,
+                lineHeight: "28px",
+                color: "#a7a9be",
+                maxWidth: 520,
+              }}
+            >
+              Deploy AI-driven strategies, leverage high-yield micro-investments, and monetize your digital presence. EarnX is the definitive terminal for the modern creator economy.
+            </motion.p>
 
-          {/* Right Dashboard Mockup */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative lg:h-[600px] flex items-center justify-center perspective-[1000px]"
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <motion.button
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                className="btn-magnetic rounded-full flex items-center gap-2 font-body font-bold"
+                style={{
+                  padding: "14px 32px",
+                  fontSize: 16,
+                  color: "#fffffe",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+              >
+                Start Earning <ArrowRight size={18} />
+              </motion.button>
+
+              <motion.button
+                whileHover={{ scale: 1.03, y: -1 }}
+                whileTap={{ scale: 0.97 }}
+                className="rounded-full flex items-center gap-2 font-body font-medium transition-all duration-300"
+                style={{
+                  padding: "13px 28px",
+                  fontSize: 16,
+                  color: "#fffffe",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  background: "rgba(32,30,40,0.6)",
+                  backdropFilter: "blur(20px)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,183,128,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.12)";
+                }}
+              >
+                <PlayCircle size={18} style={{ color: "#ffb780" }} />
+                View Methods
+              </motion.button>
+            </motion.div>
+          </div>
+
+          {/* Right — Dashboard Mockup */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="relative flex items-center justify-center"
           >
-            <div className="w-full max-w-md animate-float relative z-10 glass-panel rounded-2xl p-6 border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)]">
-              {/* Mockup Header */}
-              <div className="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
+            {/* Background glow */}
+            <div
+              className="absolute inset-0 rounded-full pointer-events-none"
+              style={{
+                background: "rgba(255,137,6,0.18)",
+                filter: "blur(100px)",
+                transform: "scale(0.8)",
+              }}
+            />
+
+            {/* Dashboard card — floats */}
+            <div
+              className="glass-panel-heavy border-gradient animate-float relative z-10 w-full max-w-md"
+              style={{ borderRadius: 24, padding: 24, boxShadow: "0 32px 80px rgba(0,0,0,0.6)" }}
+            >
+              {/* Header */}
+              <div
+                className="flex items-center justify-between pb-5 mb-5"
+                style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+              >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary to-accent p-[2px]">
-                    <div className="w-full h-full bg-background rounded-full flex items-center justify-center">
-                      <Zap className="w-5 h-5 text-primary" />
-                    </div>
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center"
+                    style={{ background: "rgba(32,30,40,0.8)", border: "1px solid rgba(255,255,255,0.12)" }}
+                  >
+                    <span style={{ fontSize: 18 }}>💳</span>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">Live Revenue</div>
-                    <div className="font-display font-bold text-xl text-white">$14,204.50</div>
+                    <div
+                      style={{
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: 11,
+                        letterSpacing: "0.1em",
+                        color: "#a7a9be",
+                        marginBottom: 2,
+                      }}
+                    >
+                      LIVE EARNINGS
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "'Syne', sans-serif",
+                        fontWeight: 700,
+                        fontSize: 24,
+                        color: "#fffffe",
+                        lineHeight: 1,
+                      }}
+                    >
+                      $12,450.00
+                    </div>
                   </div>
                 </div>
-                <div className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold border border-primary/30">
-                  +24.5%
+                <div
+                  className="flex items-center gap-1 rounded-full px-3 py-1"
+                  style={{
+                    background: "rgba(255,137,6,0.2)",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 11,
+                    color: "#ffb780",
+                    fontWeight: 700,
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  <TrendingUp size={12} /> +14.2%
                 </div>
-              </div>
-              
-              {/* Mockup Chart Area */}
-              <div className="h-40 mb-6 flex items-end gap-2 px-2">
-                {[40, 60, 45, 80, 55, 90, 75, 100].map((h, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${h}%` }}
-                    transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
-                    className="flex-1 bg-gradient-to-t from-primary/20 to-primary rounded-t-sm opacity-80"
-                  />
-                ))}
               </div>
 
-              {/* Mockup Cards */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                  <div className="text-xs text-muted-foreground mb-1">Active Streams</div>
-                  <div className="font-display font-bold text-lg text-white">4 Modules</div>
-                  <div className="w-full bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
-                    <motion.div 
-                      initial={{ width: 0 }}
-                      animate={{ width: '70%' }}
-                      transition={{ duration: 1.5, delay: 1 }}
-                      className="h-full bg-secondary"
-                    />
-                  </div>
-                </div>
-                <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                  <div className="text-xs text-muted-foreground mb-1">Next Payout</div>
-                  <div className="font-display font-bold text-lg text-white">Tomorrow</div>
-                  <div className="flex items-center gap-1 mt-2">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    <span className="text-xs text-green-500 font-medium">Processing</span>
-                  </div>
+              {/* Chart area */}
+              <div
+                className="relative overflow-hidden mb-5"
+                style={{
+                  height: 160,
+                  borderRadius: 12,
+                  background: "#1c1a24",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                }}
+              >
+                {/* Gradient fill */}
+                <div
+                  className="absolute bottom-0 left-0 w-full"
+                  style={{
+                    height: "60%",
+                    background: "linear-gradient(to top, rgba(255,137,6,0.25), transparent)",
+                  }}
+                />
+                {/* SVG line */}
+                <svg
+                  className="absolute bottom-0 left-0 w-full"
+                  height="80%"
+                  preserveAspectRatio="none"
+                  viewBox="0 0 100 100"
+                >
+                  <path
+                    d="M0,100 L0,50 Q25,70 50,30 T100,10 L100,100 Z"
+                    fill="rgba(255,137,6,0.08)"
+                    stroke="#ff8906"
+                    strokeWidth="2"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                </svg>
+                {/* Tooltip */}
+                <div
+                  className="absolute top-1/4 right-1/4 px-3 py-2 rounded-xl"
+                  style={{
+                    background: "rgba(32,30,40,0.85)",
+                    backdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    fontSize: 13,
+                    color: "#fffffe",
+                  }}
+                >
+                  <span style={{ color: "#ffb780", fontWeight: 700 }}>$420</span> today
                 </div>
               </div>
+
+              {/* Activity */}
+              <div className="flex flex-col gap-3">
+                <div
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 11,
+                    letterSpacing: "0.1em",
+                    color: "#a7a9be",
+                    marginBottom: 2,
+                  }}
+                >
+                  RECENT ACTIVITY
+                </div>
+
+                {[
+                  { icon: Bot, label: "AI Content Batch", amount: "+$85.00", color: "#ffb780" },
+                  { icon: PlayCircle, label: "YouTube Shorts Ad Rev", amount: "+$12.40", color: "#ffb1c1" },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={item.label}
+                      className="flex items-center justify-between rounded-xl px-3 py-2.5 cursor-pointer transition-colors"
+                      style={{ background: "rgba(32,30,40,0.6)", border: "1px solid transparent" }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = "rgba(42,41,51,0.7)";
+                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.background = "rgba(32,30,40,0.6)";
+                        (e.currentTarget as HTMLElement).style.borderColor = "transparent";
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-8 h-8 rounded-lg flex items-center justify-center"
+                          style={{ background: `${item.color}22` }}
+                        >
+                          <Icon size={16} style={{ color: item.color }} />
+                        </div>
+                        <span style={{ fontSize: 14, color: "#fffffe" }}>{item.label}</span>
+                      </div>
+                      <span style={{ fontWeight: 700, fontSize: 14, color: item.color }}>{item.amount}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            
-            {/* Background Glow for Mockup */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 filter blur-[80px] -z-10 rounded-full animate-pulse"></div>
           </motion.div>
         </div>
       </div>

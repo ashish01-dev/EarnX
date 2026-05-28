@@ -1,133 +1,172 @@
 import { motion } from "framer-motion";
-import { Twitter, Github, Instagram, Youtube, Send, Hexagon } from "lucide-react";
+import { Twitter, Github, Instagram, Youtube, Send } from "lucide-react";
 import { useState } from "react";
 
-const links = {
-  Platform: ["How It Works", "Earning Methods", "Tools", "Leaderboard", "Community"],
+const footerLinks = {
+  Platform: ["Invest", "Instant Earn", "Video Monetization", "Leaderboard", "Community"],
   Resources: ["Blog", "Guides", "Webinars", "Success Stories", "API Docs"],
-  Company: ["About", "Careers", "Press", "Partners", "Contact"],
+  Legal: ["Privacy", "Terms", "Security", "Contact"],
 };
 
 const socials = [
-  { icon: Twitter, label: "Twitter", color: "#1da1f2" },
-  { icon: Youtube, label: "YouTube", color: "#ff0000" },
-  { icon: Instagram, label: "Instagram", color: "#e53170" },
-  { icon: Github, label: "GitHub", color: "#a7a9be" },
+  { icon: Twitter,   label: "Twitter",   hover: "#1da1f2" },
+  { icon: Youtube,   label: "YouTube",   hover: "#ff4444" },
+  { icon: Instagram, label: "Instagram", hover: "#ffb1c1" },
+  { icon: Github,    label: "GitHub",    hover: "#a7a9be" },
 ];
 
 export function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail("");
-    }
-  };
-
   return (
-    <footer className="relative overflow-hidden border-t border-white/5 pt-24 pb-12 px-4">
-      {/* Huge faded background text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span
-          className="font-display font-black text-[20vw] leading-none select-none tracking-tighter"
-          style={{ color: "rgba(255,255,255,0.02)" }}
-        >
-          CREATE WEALTH
-        </span>
+    <footer
+      className="relative overflow-hidden pt-32 pb-12 px-6"
+      style={{ borderTop: "1px solid rgba(255,255,255,0.07)", background: "rgba(16,15,22,0.95)" }}
+    >
+      {/* Giant faded background text */}
+      <div
+        className="absolute bottom-0 left-0 w-full text-center pointer-events-none select-none overflow-hidden"
+        style={{
+          fontFamily: "'Syne',sans-serif",
+          fontWeight: 800,
+          fontSize: "clamp(60px,15vw,200px)",
+          letterSpacing: "-0.04em",
+          color: "rgba(255,255,255,0.025)",
+          lineHeight: 1,
+          whiteSpace: "nowrap",
+          zIndex: 0,
+        }}
+      >
+        CREATE WEALTH
       </div>
 
-      {/* Floating particles */}
-      {[...Array(6)].map((_, i) => (
+      {/* Floating micro-orbs */}
+      {[...Array(5)].map((_, i) => (
         <div
           key={i}
           className="absolute rounded-full animate-blob pointer-events-none"
           style={{
-            width: `${40 + i * 20}px`,
-            height: `${40 + i * 20}px`,
-            background: ["#ff8906", "#f25f4c", "#e53170"][i % 3] + "20",
-            left: `${10 + i * 15}%`,
-            top: `${20 + (i % 2) * 40}%`,
-            filter: "blur(20px)",
-            animationDelay: `${i * 0.8}s`,
+            width: 40 + i * 18,
+            height: 40 + i * 18,
+            background: ["#ffb780", "#ffb1c1", "#ff8906"][i % 3],
+            left: `${8 + i * 18}%`,
+            top: `${15 + (i % 3) * 25}%`,
+            opacity: 0.06,
+            filter: "blur(16px)",
+            animationDelay: `${i * 0.7}s`,
           }}
         />
       ))}
 
-      {/* Gradient divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      {/* Top gradient line */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(90deg, transparent, rgba(255,183,128,0.4), transparent)" }}
+      />
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        {/* Top — branding + newsletter */}
+        {/* Top row */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-12 mb-20">
+          {/* Brand */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-sm"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Hexagon className="w-6 h-6 text-white" />
-              </div>
-              <span className="font-display font-black text-3xl text-white">EarnX</span>
+            <div
+              style={{
+                fontFamily: "'Syne',sans-serif",
+                fontWeight: 800,
+                fontSize: 32,
+                letterSpacing: "-0.03em",
+                background: "linear-gradient(to right, #ffb780, #ffb1c1)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                marginBottom: 12,
+              }}
+            >
+              EarnX
             </div>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              The world's most advanced platform for modern income generation. Turn any skill into scalable revenue.
+            <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 15, color: "#a7a9be", lineHeight: "24px", marginBottom: 20 }}>
+              Engineering Wealth for the Creator Economy. The ultimate terminal to turn your digital presence into a tangible asset.
             </p>
-            <div className="flex gap-4">
+
+            <div className="flex gap-3">
               {socials.map((s) => {
                 const Icon = s.icon;
                 return (
                   <motion.a
                     key={s.label}
                     href="#"
-                    whileHover={{ scale: 1.15, y: -2 }}
-                    className="w-10 h-10 glass-panel rounded-xl border border-white/10 flex items-center justify-center transition-all duration-200 hover:border-white/30"
-                    style={{ color: "#a7a9be" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = s.color)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#a7a9be")}
+                    whileHover={{ scale: 1.12, y: -2 }}
+                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
+                    style={{
+                      background: "rgba(32,30,40,0.7)",
+                      backdropFilter: "blur(20px)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      color: "#a7a9be",
+                    }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = s.hover; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.18)"; }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#a7a9be"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; }}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon size={16} />
                   </motion.a>
                 );
               })}
             </div>
           </motion.div>
 
+          {/* Newsletter */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.15 }}
             className="w-full max-w-sm"
           >
-            <h3 className="font-display font-bold text-white text-xl mb-2">Stay ahead of the curve</h3>
-            <p className="text-sm text-muted-foreground mb-5">Weekly alpha drops, new method guides, and exclusive earning tips.</p>
+            <h3 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 20, color: "#fffffe", marginBottom: 6 }}>
+              Stay ahead of the curve
+            </h3>
+            <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 14, color: "#a7a9be", marginBottom: 16, lineHeight: "22px" }}>
+              Weekly alpha drops, new method guides, and exclusive earning tips.
+            </p>
+
             {subscribed ? (
-              <div className="px-6 py-4 rounded-2xl bg-primary/20 border border-primary/40 text-primary font-medium text-center">
+              <div
+                className="rounded-2xl px-5 py-4 text-center"
+                style={{ background: "rgba(255,183,128,0.1)", border: "1px solid rgba(255,183,128,0.3)", color: "#ffb780", fontSize: 14, fontFamily: "'Plus Jakarta Sans',sans-serif" }}
+              >
                 You're on the list. Welcome to EarnX.
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex gap-2">
+              <form onSubmit={(e) => { e.preventDefault(); if (email) { setSubscribed(true); setEmail(""); } }} className="flex gap-2">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary/50 transition-colors"
                   required
+                  className="flex-1 rounded-xl px-4 py-3 text-sm outline-none transition-colors"
+                  style={{
+                    background: "rgba(32,30,40,0.7)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    color: "#fffffe",
+                    fontFamily: "'Plus Jakarta Sans',sans-serif",
+                  }}
+                  onFocus={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,183,128,0.5)"; }}
+                  onBlur={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)"; }}
                 />
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-3 bg-primary text-black rounded-xl font-bold flex items-center gap-2 shrink-0 hover:bg-primary/90 transition-colors text-sm"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="btn-magnetic rounded-xl flex items-center gap-1.5 shrink-0"
+                  style={{ padding: "10px 18px", color: "#fffffe", fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 14, fontWeight: 600 }}
                 >
-                  <Send className="w-4 h-4" />
-                  Join
+                  <Send size={14} /> Join
                 </motion.button>
               </form>
             )}
@@ -136,21 +175,37 @@ export function Footer() {
 
         {/* Links grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-16">
-          {Object.entries(links).map(([category, items], ci) => (
+          {Object.entries(footerLinks).map(([cat, items], ci) => (
             <motion.div
-              key={category}
-              initial={{ opacity: 0, y: 20 }}
+              key={cat}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: ci * 0.1 }}
+              transition={{ delay: ci * 0.08 }}
             >
-              <h4 className="font-display font-bold text-white mb-5">{category}</h4>
-              <ul className="space-y-3">
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono',monospace",
+                  fontSize: 11,
+                  letterSpacing: "0.1em",
+                  color: "#fffffe",
+                  fontWeight: 500,
+                  marginBottom: 16,
+                  textTransform: "uppercase",
+                }}
+              >
+                {cat}
+              </div>
+              <ul className="flex flex-col gap-3">
                 {items.map((item) => (
                   <li key={item}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 group flex items-center gap-1">
+                    <a
+                      href="#"
+                      style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 15, color: "#a7a9be", transition: "color 0.2s" }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
+                      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#a7a9be"; }}
+                    >
                       {item}
-                      <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-primary">→</span>
                     </a>
                   </li>
                 ))}
@@ -160,13 +215,22 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2026 EarnX. All rights reserved.
+        <div
+          className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+        >
+          <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 13, color: "#a7a9be" }}>
+            © 2024 EarnX. Engineering Wealth for the Creator Economy.
           </p>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
-              <a key={item} href="#" className="text-xs text-muted-foreground hover:text-white transition-colors">
+            {["Privacy Policy", "Terms", "Security"].map((item) => (
+              <a
+                key={item}
+                href="#"
+                style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 13, color: "#a7a9be", transition: "color 0.2s" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#a7a9be"; }}
+              >
                 {item}
               </a>
             ))}

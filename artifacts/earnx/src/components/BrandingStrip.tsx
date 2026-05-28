@@ -3,26 +3,57 @@ import { useRef } from "react";
 
 export function BrandingStrip() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-8%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.2, 0.9, 0.9, 0.2]);
 
   return (
-    <section ref={ref} className="py-24 overflow-hidden bg-background relative flex items-center justify-center border-y border-white/5">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
-      
-      <motion.div style={{ x, opacity }} className="whitespace-nowrap flex items-center">
-        <h2 className="text-[15vw] font-display font-black leading-none tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent animate-sweep select-none opacity-80 mix-blend-lighten filter drop-shadow-[0_0_30px_rgba(255,137,6,0.3)]">
-          EARNX EARNX EARNX EARNX EARNX
-        </h2>
+    <section
+      ref={ref}
+      className="relative overflow-hidden flex items-center justify-center"
+      style={{
+        paddingTop: 64,
+        paddingBottom: 64,
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
+      }}
+    >
+      {/* Horizontal gradient fade */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(90deg, #13121b 0%, transparent 15%, transparent 85%, #13121b 100%)",
+          zIndex: 2,
+        }}
+      />
+      {/* Warm glow strip */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "linear-gradient(180deg, transparent 0%, rgba(255,137,6,0.04) 50%, transparent 100%)",
+        }}
+      />
+
+      <motion.div style={{ x, opacity }} className="whitespace-nowrap relative z-1 select-none">
+        <span
+          className="font-display font-extrabold tracking-tighter uppercase animate-sweep"
+          style={{
+            fontFamily: "'Syne', sans-serif",
+            fontSize: "clamp(80px, 14vw, 180px)",
+            fontWeight: 800,
+            letterSpacing: "-0.04em",
+            lineHeight: 1,
+            background: "linear-gradient(135deg, #ffb780 0%, #ffb1c1 40%, #ff8906 70%, #ffb780 100%)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            filter: "drop-shadow(0 0 40px rgba(255,183,128,0.25))",
+          }}
+        >
+          EARNX&nbsp;&nbsp;EARNX&nbsp;&nbsp;EARNX&nbsp;&nbsp;EARNX
+        </span>
       </motion.div>
-      
-      {/* Overlay gradient to fade edges */}
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background pointer-events-none"></div>
     </section>
   );
 }

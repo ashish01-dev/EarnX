@@ -1,84 +1,160 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Hexagon, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
+
+const links = ["Home", "Methods", "Tools", "Success Stories", "Leaderboard", "Community"];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const fn = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  const links = ["Methods", "Tools", "Success Stories", "Leaderboard", "Community"];
-
   return (
-    <motion.header 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "py-4" : "py-6"}`}
-    >
-      <div className="container mx-auto px-4">
-        <div className={`mx-auto max-w-6xl glass-panel rounded-full px-6 py-3 flex items-center justify-between transition-all duration-500 border relative overflow-hidden ${scrolled ? "bg-background/80 shadow-2xl shadow-primary/10 border-primary/20" : "border-white/10"}`}>
-          {/* Animated glow on edge */}
-          <div className="absolute inset-0 rounded-full opacity-20 bg-gradient-to-r from-primary via-secondary to-accent animate-sweep"></div>
-          
-          <div className="relative flex items-center gap-2 z-10">
-            <div className="relative w-8 h-8 flex items-center justify-center bg-gradient-to-br from-primary to-accent rounded-lg">
-              <Hexagon className="w-5 h-5 text-white" />
-            </div>
-            <span className="font-display font-bold text-xl tracking-tight text-white">EarnX</span>
-          </div>
-
-          <nav className="hidden md:flex items-center gap-8 z-10">
-            {links.map((link) => (
-              <a key={link} href={`#${link.toLowerCase().replace(" ", "-")}`} className="text-sm font-medium text-muted-foreground hover:text-white transition-colors duration-200">
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden md:flex items-center gap-4 z-10">
-            <button className="text-sm font-medium text-white hover:text-primary transition-colors">Sign In</button>
-            <button className="relative group px-6 py-2 rounded-full overflow-hidden">
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary via-secondary to-accent group-hover:scale-105 transition-transform duration-300"></span>
-              <span className="relative text-sm font-bold text-white flex items-center gap-2">
-                <Sparkles className="w-4 h-4" />
-                Get Started
-              </span>
-            </button>
-          </div>
-
-          <button className="md:hidden relative z-10 text-white p-2" onClick={() => setMobileOpen(!mobileOpen)}>
-            {mobileOpen ? <X /> : <Menu />}
-          </button>
+    <>
+      {/* Desktop */}
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="hidden md:flex fixed top-6 left-1/2 z-[100] items-center gap-8 -translate-x-1/2"
+        style={{
+          minWidth: 820,
+          justifyContent: "space-between",
+          background: scrolled ? "rgba(19,18,27,0.85)" : "rgba(32,30,40,0.6)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderRadius: 9999,
+          padding: "12px 28px",
+          border: "1px solid rgba(255,255,255,0.10)",
+          boxShadow: "0 0 24px rgba(255,137,6,0.12)",
+          transition: "background 0.3s",
+        }}
+      >
+        {/* Logo */}
+        <div
+          className="font-display font-bold tracking-tight"
+          style={{
+            fontSize: 24,
+            lineHeight: 1,
+            background: "linear-gradient(to right, #ffb780, #ffb1c1)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          EarnX
         </div>
-      </div>
 
+        {/* Links */}
+        <div className="flex items-center gap-7">
+          {links.map((link, i) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase().replace(" ", "-")}`}
+              className="font-body text-sm transition-colors duration-200"
+              style={{
+                color: i === 0 ? "#ffb780" : "#a7a9be",
+                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                fontWeight: i === 0 ? 600 : 400,
+                borderBottom: i === 0 ? "2px solid #ffb780" : "none",
+                paddingBottom: i === 0 ? 2 : 0,
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = i === 0 ? "#ffb780" : "#a7a9be"; }}
+            >
+              {link}
+            </a>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <motion.button
+          whileHover={{ scale: 1.04, y: -1 }}
+          whileTap={{ scale: 0.97 }}
+          className="btn-magnetic rounded-full font-body font-bold text-sm"
+          style={{ padding: "10px 24px", color: "#fffffe", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+        >
+          Get Started
+        </motion.button>
+      </motion.nav>
+
+      {/* Mobile */}
+      <motion.nav
+        initial={{ y: -60, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className="md:hidden fixed top-4 left-4 right-4 z-[100] flex items-center justify-between"
+        style={{
+          background: "rgba(32,30,40,0.75)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          borderRadius: 9999,
+          padding: "14px 24px",
+          border: "1px solid rgba(255,255,255,0.10)",
+        }}
+      >
+        <div
+          className="font-display font-bold"
+          style={{
+            fontSize: 22,
+            background: "linear-gradient(to right, #ffb780, #ffb1c1)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          EarnX
+        </div>
+        <button onClick={() => setMobileOpen((v) => !v)} style={{ color: "#fffffe" }}>
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </motion.nav>
+
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-24 left-4 right-4 glass-panel rounded-2xl p-6 flex flex-col gap-4 border border-white/10 shadow-2xl md:hidden z-40"
+            exit={{ opacity: 0, y: -12 }}
+            className="md:hidden fixed top-20 left-4 right-4 z-[99] flex flex-col gap-1 rounded-2xl p-5"
+            style={{
+              background: "rgba(22,22,26,0.95)",
+              backdropFilter: "blur(40px)",
+              border: "1px solid rgba(255,255,255,0.10)",
+            }}
           >
             {links.map((link) => (
-              <a key={link} href={`#${link.toLowerCase().replace(" ", "-")}`} className="text-lg font-medium text-white" onClick={() => setMobileOpen(false)}>
+              <a
+                key={link}
+                href={`#${link.toLowerCase().replace(" ", "-")}`}
+                onClick={() => setMobileOpen(false)}
+                className="py-3 px-4 rounded-xl text-base font-medium transition-colors"
+                style={{
+                  color: "#a7a9be",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#a7a9be"; }}
+              >
                 {link}
               </a>
             ))}
-            <div className="h-px w-full bg-white/10 my-2"></div>
-            <button className="w-full text-left text-lg font-medium text-white">Sign In</button>
-            <button className="w-full bg-primary text-white font-bold py-3 rounded-xl mt-2">Get Started</button>
+            <div className="h-px w-full my-2" style={{ background: "rgba(255,255,255,0.07)" }} />
+            <button
+              className="btn-magnetic w-full rounded-full py-3 font-bold text-base"
+              style={{ color: "#fffffe", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            >
+              Get Started
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </>
   );
 }
