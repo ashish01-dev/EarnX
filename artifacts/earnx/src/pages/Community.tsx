@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, MessageCircle, Globe, Heart, ArrowRight, Sparkles, Github, Twitter, Youtube } from "lucide-react";
+import { Users, MessageCircle, Globe, Heart, ArrowRight, Sparkles } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Link } from "wouter";
 
@@ -24,14 +24,11 @@ export default function Community() {
     <PageLayout>
       <section className="relative py-32 px-6" style={{ paddingTop: 200 }}>
         <div className="absolute top-1/3 left-0 pointer-events-none rounded-full" style={{ width: 500, height: 500, background: "rgba(255,177,193,0.07)", filter: "blur(130px)" }} />
-
         <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <p className="uppercase mb-4" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: "0.1em", color: "#ffb780" }}>
-              Community
-            </p>
+            <p className="uppercase mb-4" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: "0.1em", color: "#ffb780" }}>Community</p>
             <h1 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "clamp(40px,6vw,72px)", letterSpacing: "-0.03em", color: "#fffffe", lineHeight: 1.1 }}>
-              Join the{" "}<span className="text-gradient-primary">EarnX</span> Community
+              Join the <span className="text-gradient-primary">EarnX</span> Community
             </h1>
             <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 16, color: "#a7a9be", marginTop: 12, maxWidth: 600, margin: "12px auto 0" }}>
               Connect with thousands of creators, investors, and earners. Share strategies, get support, and grow together.
@@ -42,15 +39,9 @@ export default function Community() {
             {stats.map((s, i) => {
               const Icon = s.icon;
               return (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="rounded-[20px] p-6 text-center"
-                  style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
+                <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }} whileHover={{ y: -4, scale: 1.02 }}
+                  className="rounded-[20px] p-6 text-center" style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
                 >
                   <div className="w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: `${s.accent}22`, border: `1px solid ${s.accent}44` }}>
                     <Icon size={18} style={{ color: s.accent }} />
@@ -68,16 +59,10 @@ export default function Community() {
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {channels.map((ch, i) => (
-                <motion.div
-                  key={ch.name}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className="rounded-[16px] p-5 cursor-pointer transition-all duration-200"
-                  style={{ background: "rgba(32,30,40,0.6)", border: "1px solid rgba(255,255,255,0.07)" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,183,128,0.3)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
+                <motion.div key={ch.name} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
+                  className="rounded-[16px] p-5 cursor-pointer transition-all duration-200" style={{ background: "rgba(32,30,40,0.6)", border: "1px solid rgba(255,255,255,0.07)" }}
+                  onMouseEnter={(e) => { (e.target as HTMLElement).style.borderColor = "rgba(255,183,128,0.3)"; }}
+                  onMouseLeave={(e) => { (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <h3 style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 14, color: "#ffb780", fontWeight: 500 }}>{ch.name}</h3>

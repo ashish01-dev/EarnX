@@ -5,18 +5,12 @@ import { PageLayout } from "@/components/PageLayout";
 import { Link } from "wouter";
 
 const chartData = [
-  { month: "Jan", value: 12000 },
-  { month: "Feb", value: 18500 },
-  { month: "Mar", value: 15000 },
-  { month: "Apr", value: 24000 },
-  { month: "May", value: 21000 },
-  { month: "Jun", value: 31000 },
-  { month: "Jul", value: 28000 },
-  { month: "Aug", value: 42000 },
-  { month: "Sep", value: 38000 },
-  { month: "Oct", value: 52000 },
-  { month: "Nov", value: 47000 },
-  { month: "Dec", value: 68000 },
+  { month: "Jan", value: 12000 }, { month: "Feb", value: 18500 },
+  { month: "Mar", value: 15000 }, { month: "Apr", value: 24000 },
+  { month: "May", value: 21000 }, { month: "Jun", value: 31000 },
+  { month: "Jul", value: 28000 }, { month: "Aug", value: 42000 },
+  { month: "Sep", value: 38000 }, { month: "Oct", value: 52000 },
+  { month: "Nov", value: 47000 }, { month: "Dec", value: 68000 },
 ];
 
 const quickActions = [
@@ -38,7 +32,6 @@ export default function Dashboard() {
     <PageLayout>
       <section className="relative py-32 px-6" style={{ paddingTop: 200 }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none rounded-full" style={{ width: 500, height: 300, background: "rgba(255,137,6,0.08)", filter: "blur(120px)" }} />
-
         <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-center justify-between mb-16">
             <div>
@@ -63,15 +56,9 @@ export default function Dashboard() {
             ].map((s, i) => {
               const Icon = s.icon;
               return (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="rounded-[20px] p-5"
-                  style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
+                <motion.div key={s.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }} whileHover={{ y: -4, scale: 1.02 }}
+                  className="rounded-[20px] p-5" style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `${s.accent}22`, border: `1px solid ${s.accent}44` }}>
@@ -87,12 +74,8 @@ export default function Dashboard() {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-6 mb-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="lg:col-span-2 rounded-[20px] p-6"
-              style={{ background: "rgba(22,22,26,0.8)", backdropFilter: "blur(40px)", border: "1px solid rgba(255,255,255,0.08)" }}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className="lg:col-span-2 rounded-[20px] p-6" style={{ background: "rgba(22,22,26,0.8)", backdropFilter: "blur(40px)", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               <div className="flex items-center justify-between mb-6">
                 <h3 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 18, color: "#fffffe" }}>Revenue Growth</h3>
@@ -111,20 +94,16 @@ export default function Dashboard() {
                     </defs>
                     <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill: "#a7a9be", fontSize: 11, fontFamily: "'Plus Jakarta Sans',sans-serif" }} />
                     <YAxis hide />
-                    <Tooltip contentStyle={{ background: "rgba(32,30,40,0.95)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, color: "#fffffe", fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 12 }} formatter={(v: number) => [`$${v.toLocaleString()}`, "Earnings"]} />
+                    <Tooltip contentStyle={{ background: "rgba(32,30,40,0.95)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, color: "#fffffe", fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 12 }}
+                      formatter={(v: number) => [`$${v.toLocaleString()}`, "Earnings"]} />
                     <Area type="monotone" dataKey="value" stroke="#ffb780" strokeWidth={2} fill="url(#dashGrad)" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="rounded-[20px] p-6"
-              style={{ background: "rgba(22,22,26,0.8)", backdropFilter: "blur(40px)", border: "1px solid rgba(255,255,255,0.08)" }}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+              className="rounded-[20px] p-6" style={{ background: "rgba(22,22,26,0.8)", backdropFilter: "blur(40px)", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               <h3 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 16, color: "#fffffe", marginBottom: 16 }}>Recent Activity</h3>
               <div className="flex flex-col gap-3">
@@ -153,17 +132,11 @@ export default function Dashboard() {
             {quickActions.map((action, i) => {
               const Icon = action.icon;
               return (
-                <motion.div
-                  key={action.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="rounded-[16px] p-5 cursor-pointer transition-all duration-200"
-                  style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = `${action.accent}44`; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
+                <motion.div key={action.label} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }} whileHover={{ y: -4, scale: 1.02 }}
+                  className="rounded-[16px] p-5 cursor-pointer transition-all duration-200" style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
+                  onMouseEnter={(e) => { (e.target as HTMLElement).style.borderColor = `${action.accent}44`; }}
+                  onMouseLeave={(e) => { (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)"; }}
                 >
                   <div className="w-10 h-10 rounded-full flex items-center justify-center mb-3" style={{ background: `${action.accent}22`, border: `1px solid ${action.accent}44` }}>
                     <Icon size={18} style={{ color: action.accent }} />

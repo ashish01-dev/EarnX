@@ -27,14 +27,11 @@ export default function Methods() {
     <PageLayout>
       <section className="relative py-32 px-6" style={{ paddingTop: 200 }}>
         <div className="absolute top-0 right-0 pointer-events-none rounded-full" style={{ width: 600, height: 400, background: "rgba(229,49,112,0.07)", filter: "blur(140px)" }} />
-
         <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-            <p className="uppercase mb-4" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: "0.1em", color: "#ffb780" }}>
-              Earning Methods
-            </p>
+            <p className="uppercase mb-4" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: "0.1em", color: "#ffb780" }}>Earning Methods</p>
             <h1 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "clamp(40px,6vw,72px)", letterSpacing: "-0.03em", color: "#fffffe", lineHeight: 1.1 }}>
-              All{" "}<span className="text-gradient-primary">Earning</span> Methods
+              All <span className="text-gradient-primary">Earning</span> Methods
             </h1>
             <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 16, color: "#a7a9be", marginTop: 12, maxWidth: 600, margin: "12px auto 0" }}>
               Explore every strategy available on EarnX. Each method includes estimated yields, difficulty level, and step-by-step guides.
@@ -45,29 +42,9 @@ export default function Methods() {
             {methods.map((m, i) => {
               const Icon = m.icon;
               return (
-                <motion.div
-                  key={m.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.04 }}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  className="rounded-[20px] p-6 flex flex-col gap-4 cursor-pointer"
-                  style={{
-                    background: "rgba(32,30,40,0.6)",
-                    backdropFilter: "blur(20px)",
-                    border: "1px solid rgba(255,255,255,0.07)",
-                    boxShadow: "0 4px 30px rgba(0,0,0,0.4)",
-                    transition: "box-shadow 0.3s, border-color 0.3s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = `0 0 40px rgba(255,137,6,0.12)`;
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,183,128,0.2)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 30px rgba(0,0,0,0.4)";
-                    (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.07)";
-                  }}
+                <motion.div key={m.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.04 }} whileHover={{ y: -4, scale: 1.01 }}
+                  className="rounded-[20px] p-6 flex flex-col gap-4 cursor-pointer card-base"
                 >
                   <div className="flex items-start justify-between">
                     <div className="w-11 h-11 rounded-full flex items-center justify-center" style={{ background: "rgba(32,30,40,0.8)", border: "1px solid rgba(255,255,255,0.1)" }}>

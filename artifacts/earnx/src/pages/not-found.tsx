@@ -19,11 +19,9 @@ export default function NotFound() {
             <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 16, color: "#a7a9be" }}>
               Page not found
             </p>
-            <button
-              onClick={() => setLocation("/")}
+            <button onClick={() => setLocation("/")}
               className="btn-magnetic rounded-full flex items-center gap-2 font-body font-bold mt-4 cursor-pointer"
-              style={{ padding: "12px 28px", fontSize: 14, color: "#fffffe", fontFamily: "'Plus Jakarta Sans',sans-serif" }}
-            >
+              style={{ padding: "12px 28px", fontSize: 14, color: "#fffffe", fontFamily: "'Plus Jakarta Sans',sans-serif" }}>
               <ArrowLeft size={16} /> Back to Home
             </button>
           </div>

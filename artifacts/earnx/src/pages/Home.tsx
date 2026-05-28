@@ -14,14 +14,12 @@ export default function Home() {
       <div id="home" />
       <Hero />
       <BrandingStrip />
-      <div className="flex flex-col gap-0">
-        <CategoryTabs />
-        <HowItWorks />
-        <LiveDashboard />
-        <EarningMethods />
-        <Testimonials />
-        <Leaderboard />
-      </div>
+      <CategoryTabs />
+      <HowItWorks />
+      <LiveDashboard />
+      <EarningMethods />
+      <Testimonials />
+      <Leaderboard />
     </PageLayout>
   );
 }

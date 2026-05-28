@@ -2,5 +2,6 @@
   "installCommand": "pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm run build",
   "outputDirectory": "artifacts/earnx/dist/public",
-  "framework": "vite"
+  "framework": "vite",
+  "nodeVersion": "22.x"
 }

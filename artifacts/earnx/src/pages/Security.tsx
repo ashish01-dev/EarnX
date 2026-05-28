@@ -16,7 +16,6 @@ export default function Security() {
     <PageLayout>
       <section className="relative py-32 px-6" style={{ paddingTop: 200 }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none rounded-full" style={{ width: 600, height: 400, background: "rgba(255,137,6,0.06)", filter: "blur(140px)" }} />
-
         <div className="container mx-auto max-w-5xl relative z-10">
           <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
             <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: "rgba(74,222,128,0.15)", border: "1px solid rgba(74,222,128,0.3)" }}>
@@ -34,15 +33,9 @@ export default function Security() {
             {features.map((f, i) => {
               const Icon = f.icon;
               return (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  whileHover={{ y: -4 }}
-                  className="rounded-[20px] p-6 flex gap-4"
-                  style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
+                <motion.div key={f.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }} whileHover={{ y: -4 }}
+                  className="rounded-[20px] p-6 flex gap-4" style={{ background: "rgba(32,30,40,0.6)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.07)" }}
                 >
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ background: "rgba(32,30,40,0.8)", border: "1px solid rgba(255,255,255,0.1)" }}>
                     <Icon size={22} style={{ color: "#ffb780" }} />
