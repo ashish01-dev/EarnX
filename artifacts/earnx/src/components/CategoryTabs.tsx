@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, Zap, Video, BarChart3, Bitcoin, Brain, DollarSign, Code, ClipboardList, Bot, Briefcase, Youtube, Film, Tv, Camera } from "lucide-react";
+import { useLocation } from "wouter";
 
 const categories = [
   {
@@ -51,6 +52,7 @@ const cardAnim = {
 export function CategoryTabs() {
   const [active, setActive] = useState("invest");
   const cat = categories.find((c) => c.id === active)!;
+  const [, setLocation] = useLocation();
 
   return (
     <section className="relative py-32 px-6" id="methods">
@@ -106,6 +108,7 @@ export function CategoryTabs() {
                     fontSize: 14,
                     color: isActive ? "#13121b" : "#a7a9be",
                     position: "relative",
+                    cursor: "pointer",
                   }}
                 >
                   {isActive && (
@@ -141,7 +144,8 @@ export function CategoryTabs() {
                   key={item.label}
                   variants={cardAnim}
                   whileHover={{ y: -6, scale: 1.025 }}
-                  className="hover-reflection relative rounded-[24px] p-7 flex flex-col gap-4 cursor-default"
+                  onClick={() => setLocation("/methods")}
+                  className="hover-reflection relative rounded-[24px] p-7 flex flex-col gap-4 cursor-pointer"
                   style={{
                     background: "rgba(32,30,40,0.6)",
                     backdropFilter: "blur(20px)",

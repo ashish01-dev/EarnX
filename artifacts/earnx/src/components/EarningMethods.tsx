@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Brain, Bitcoin, Share2, Code, Video, ShoppingBag, Scissors, CandlestickChart } from "lucide-react";
+import { useLocation } from "wouter";
 
 const methods = [
   {
@@ -65,6 +66,8 @@ const methods = [
 ];
 
 export function EarningMethods() {
+  const [, setLocation] = useLocation();
+
   return (
     <section className="relative py-32 px-6" id="methods-grid">
       <div
@@ -117,7 +120,8 @@ export function EarningMethods() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
                 whileHover={{ scale: 1.02, y: -4 }}
-                className={`hover-reflection relative rounded-[24px] flex flex-col justify-between overflow-hidden cursor-default ${
+                onClick={() => setLocation("/methods")}
+                className={`hover-reflection relative rounded-[24px] flex flex-col justify-between overflow-hidden cursor-pointer ${
                   isLarge ? "md:col-span-8" : "md:col-span-4"
                 }`}
                 style={{

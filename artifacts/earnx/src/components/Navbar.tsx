@@ -1,18 +1,52 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "wouter";
 
-const links = ["Home", "Methods", "Tools", "Success Stories", "Leaderboard", "Community"];
+interface NavLink {
+  label: string;
+  path: string;
+  sectionId?: string;
+}
+
+const links: NavLink[] = [
+  { label: "Home", path: "/", sectionId: "home" },
+  { label: "Methods", path: "/methods", sectionId: "methods" },
+  { label: "Tools", path: "/methods" },
+  { label: "Success Stories", path: "/", sectionId: "success-stories" },
+  { label: "Leaderboard", path: "/leaderboard", sectionId: "leaderboard" },
+  { label: "Community", path: "/community" },
+];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent, link: NavLink) => {
+    e.preventDefault();
+    setMobileOpen(false);
+
+    if (location === "/" && link.sectionId) {
+      const el = document.getElementById(link.sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+    }
+    setLocation(link.path);
+  };
+
+  const isActive = (link: NavLink) => {
+    if (link.path === "/") return location === "/";
+    return location.startsWith(link.path);
+  };
 
   return (
     <>
@@ -36,8 +70,10 @@ export function Navbar() {
         }}
       >
         {/* Logo */}
-        <div
-          className="font-display font-bold tracking-tight"
+        <a
+          href="/"
+          onClick={(e) => { e.preventDefault(); setLocation("/"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          className="font-display font-bold tracking-tight cursor-pointer"
           style={{
             fontSize: 24,
             lineHeight: 1,
@@ -48,35 +84,40 @@ export function Navbar() {
           }}
         >
           EarnX
-        </div>
+        </a>
 
         {/* Links */}
         <div className="flex items-center gap-7">
-          {links.map((link, i) => (
-            <a
-              key={link}
-              href={`#${link.toLowerCase().replace(" ", "-")}`}
-              className="font-body text-sm transition-colors duration-200"
-              style={{
-                color: i === 0 ? "#ffb780" : "#a7a9be",
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                fontWeight: i === 0 ? 600 : 400,
-                borderBottom: i === 0 ? "2px solid #ffb780" : "none",
-                paddingBottom: i === 0 ? 2 : 0,
-              }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = i === 0 ? "#ffb780" : "#a7a9be"; }}
-            >
-              {link}
-            </a>
-          ))}
+          {links.map((link, i) => {
+            const active = isActive(link);
+            return (
+              <a
+                key={link.label}
+                href={link.path}
+                onClick={(e) => handleNavClick(e, link)}
+                className="font-body text-sm transition-colors duration-200 cursor-pointer"
+                style={{
+                  color: active ? "#ffb780" : "#a7a9be",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  fontWeight: active ? 600 : 400,
+                  borderBottom: active ? "2px solid #ffb780" : "none",
+                  paddingBottom: active ? 2 : 0,
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = active ? "#ffb780" : "#a7a9be"; }}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
         {/* CTA */}
         <motion.button
           whileHover={{ scale: 1.04, y: -1 }}
           whileTap={{ scale: 0.97 }}
-          className="btn-magnetic rounded-full font-body font-bold text-sm"
+          onClick={() => setLocation("/get-started")}
+          className="btn-magnetic rounded-full font-body font-bold text-sm cursor-pointer"
           style={{ padding: "10px 24px", color: "#fffffe", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
           Get Started
@@ -98,8 +139,10 @@ export function Navbar() {
           border: "1px solid rgba(255,255,255,0.10)",
         }}
       >
-        <div
-          className="font-display font-bold"
+        <a
+          href="/"
+          onClick={(e) => { e.preventDefault(); setLocation("/"); setMobileOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          className="font-display font-bold cursor-pointer"
           style={{
             fontSize: 22,
             background: "linear-gradient(to right, #ffb780, #ffb1c1)",
@@ -109,8 +152,8 @@ export function Navbar() {
           }}
         >
           EarnX
-        </div>
-        <button onClick={() => setMobileOpen((v) => !v)} style={{ color: "#fffffe" }}>
+        </a>
+        <button onClick={() => setMobileOpen((v) => !v)} style={{ color: "#fffffe", cursor: "pointer" }}>
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </motion.nav>
@@ -131,23 +174,24 @@ export function Navbar() {
           >
             {links.map((link) => (
               <a
-                key={link}
-                href={`#${link.toLowerCase().replace(" ", "-")}`}
-                onClick={() => setMobileOpen(false)}
-                className="py-3 px-4 rounded-xl text-base font-medium transition-colors"
+                key={link.label}
+                href={link.path}
+                onClick={(e) => handleNavClick(e, link)}
+                className="py-3 px-4 rounded-xl text-base font-medium transition-colors cursor-pointer"
                 style={{
-                  color: "#a7a9be",
+                  color: isActive(link) ? "#ffb780" : "#a7a9be",
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                 }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#a7a9be"; }}
               >
-                {link}
+                {link.label}
               </a>
             ))}
             <div className="h-px w-full my-2" style={{ background: "rgba(255,255,255,0.07)" }} />
             <button
-              className="btn-magnetic w-full rounded-full py-3 font-bold text-base"
+              onClick={() => { setLocation("/get-started"); setMobileOpen(false); }}
+              className="btn-magnetic w-full rounded-full py-3 font-bold text-base cursor-pointer"
               style={{ color: "#fffffe", fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               Get Started

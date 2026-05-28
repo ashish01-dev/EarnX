@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Trophy, Flame, Award, Shield, Star } from "lucide-react";
+import { useLocation } from "wouter";
 
 const leaders = [
   { rank: 1, name: "Alex Chen",      location: "SF, US",     earned: "$68,420", level: 42, xp: 92, badge: Trophy, accent: "#ffb780", title: "Wealth Architect" },
@@ -10,6 +11,8 @@ const leaders = [
 ];
 
 export function Leaderboard() {
+  const [, setLocation] = useLocation();
+
   return (
     <section className="relative py-32 px-6" id="leaderboard">
       <div
@@ -177,7 +180,8 @@ export function Leaderboard() {
           className="text-center mt-10"
         >
           <button
-            className="rounded-full font-body font-bold transition-all duration-200 group"
+            onClick={() => setLocation("/leaderboard")}
+            className="rounded-full font-body font-bold transition-all duration-200 group cursor-pointer"
             style={{
               padding: "14px 32px",
               fontFamily: "'Plus Jakarta Sans',sans-serif",

@@ -1,23 +1,52 @@
 import { motion } from "framer-motion";
 import { Twitter, Github, Instagram, Youtube, Send } from "lucide-react";
 import { useState } from "react";
+import { useLocation } from "wouter";
 
 const footerLinks = {
-  Platform: ["Invest", "Instant Earn", "Video Monetization", "Leaderboard", "Community"],
-  Resources: ["Blog", "Guides", "Webinars", "Success Stories", "API Docs"],
-  Legal: ["Privacy", "Terms", "Security", "Contact"],
+  Platform: [
+    { label: "Invest", path: "/methods" },
+    { label: "Instant Earn", path: "/methods" },
+    { label: "Video Monetization", path: "/methods" },
+    { label: "Leaderboard", path: "/leaderboard" },
+    { label: "Community", path: "/community" },
+  ],
+  Resources: [
+    { label: "Dashboard", path: "/dashboard" },
+    { label: "Earning Methods", path: "/methods" },
+    { label: "Success Stories", path: "/" },
+    { label: "Get Started", path: "/get-started" },
+    { label: "Security", path: "/security" },
+  ],
+  Legal: [
+    { label: "Privacy", path: "/privacy" },
+    { label: "Terms", path: "/terms" },
+    { label: "Security", path: "/security" },
+    { label: "Contact", path: "mailto:hello@earnx.io" },
+  ],
 };
 
 const socials = [
-  { icon: Twitter,   label: "Twitter",   hover: "#1da1f2" },
-  { icon: Youtube,   label: "YouTube",   hover: "#ff4444" },
-  { icon: Instagram, label: "Instagram", hover: "#ffb1c1" },
-  { icon: Github,    label: "GitHub",    hover: "#a7a9be" },
+  { icon: Twitter,   label: "Twitter",   hover: "#1da1f2", url: "https://twitter.com/earnx" },
+  { icon: Youtube,   label: "YouTube",   hover: "#ff4444", url: "https://youtube.com/@earnx" },
+  { icon: Instagram, label: "Instagram", hover: "#ffb1c1", url: "https://instagram.com/earnx" },
+  { icon: Github,    label: "GitHub",    hover: "#a7a9be", url: "https://github.com/earnx" },
 ];
 
 export function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [, setLocation] = useLocation();
+
+  const handleNav = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    if (path.startsWith("mailto:")) {
+      window.location.href = path;
+    } else {
+      setLocation(path);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <footer
@@ -76,6 +105,8 @@ export function Footer() {
             className="max-w-sm"
           >
             <div
+              onClick={(e) => handleNav(e, "/")}
+              className="cursor-pointer"
               style={{
                 fontFamily: "'Syne',sans-serif",
                 fontWeight: 800,
@@ -100,7 +131,9 @@ export function Footer() {
                 return (
                   <motion.a
                     key={s.label}
-                    href="#"
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.12, y: -2 }}
                     className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200"
                     style={{
@@ -163,7 +196,7 @@ export function Footer() {
                   type="submit"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.97 }}
-                  className="btn-magnetic rounded-xl flex items-center gap-1.5 shrink-0"
+                  className="btn-magnetic rounded-xl flex items-center gap-1.5 shrink-0 cursor-pointer"
                   style={{ padding: "10px 18px", color: "#fffffe", fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 14, fontWeight: 600 }}
                 >
                   <Send size={14} /> Join
@@ -198,14 +231,15 @@ export function Footer() {
               </div>
               <ul className="flex flex-col gap-3">
                 {items.map((item) => (
-                  <li key={item}>
+                  <li key={item.label}>
                     <a
-                      href="#"
-                      style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 15, color: "#a7a9be", transition: "color 0.2s" }}
+                      href={item.path}
+                      onClick={(e) => handleNav(e, item.path)}
+                      style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 15, color: "#a7a9be", transition: "color 0.2s", cursor: "pointer" }}
                       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
                       onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#a7a9be"; }}
                     >
-                      {item}
+                      {item.label}
                     </a>
                   </li>
                 ))}
@@ -220,18 +254,23 @@ export function Footer() {
           style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
         >
           <p style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 13, color: "#a7a9be" }}>
-            © 2024 EarnX. Engineering Wealth for the Creator Economy.
+            &copy; {new Date().getFullYear()} EarnX. Engineering Wealth for the Creator Economy.
           </p>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms", "Security"].map((item) => (
+            {[
+              { label: "Privacy Policy", path: "/privacy" },
+              { label: "Terms", path: "/terms" },
+              { label: "Security", path: "/security" },
+            ].map((item) => (
               <a
-                key={item}
-                href="#"
-                style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 13, color: "#a7a9be", transition: "color 0.2s" }}
+                key={item.label}
+                href={item.path}
+                onClick={(e) => handleNav(e, item.path)}
+                style={{ fontFamily: "'Plus Jakarta Sans',sans-serif", fontSize: 13, color: "#a7a9be", transition: "color 0.2s", cursor: "pointer" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#ffb780"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#a7a9be"; }}
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>

@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { ArrowRight, TrendingUp, Bot, PlayCircle } from "lucide-react";
+import { useLocation } from "wouter";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     const fn = (e: MouseEvent) => {
@@ -113,7 +115,8 @@ export function Hero() {
               <motion.button
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="btn-magnetic rounded-full flex items-center gap-2 font-body font-bold"
+                onClick={() => setLocation("/get-started")}
+                className="btn-magnetic rounded-full flex items-center gap-2 font-body font-bold cursor-pointer"
                 style={{
                   padding: "14px 32px",
                   fontSize: 16,
@@ -127,7 +130,8 @@ export function Hero() {
               <motion.button
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
-                className="rounded-full flex items-center gap-2 font-body font-medium transition-all duration-300"
+                onClick={() => setLocation("/methods")}
+                className="rounded-full flex items-center gap-2 font-body font-medium transition-all duration-300 cursor-pointer"
                 style={{
                   padding: "13px 28px",
                   fontSize: 16,
