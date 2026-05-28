@@ -1,0 +1,429 @@
+Use this exact ultra-detailed prompt in Stitch AI / Lovable / Framer AI / v0 / Replit AI or any AI website builder:
+
+---
+
+Create an ultra-premium futuristic dark-themed landing page website for a platform named “EarnX” focused on modern online money earning methods. The website should look like a billion-dollar fintech startup mixed with a luxury Web3 platform and an elite creator economy brand. The design must feel cinematic, immersive, smooth, expensive, high-end, and highly interactive.
+
+Use a modern premium dark color palette inspired by [Happy Hues Palette 13](https://www.happyhues.co/palettes/13?utm_source=chatgpt.com) with these exact color roles:
+
+PRIMARY BACKGROUND:
+#0f0e17
+
+PRIMARY TEXT:
+#fffffe
+
+SECONDARY TEXT:
+#a7a9be
+
+PRIMARY ACCENT:
+#ff8906
+
+SECONDARY ACCENT:
+#f25f4c
+
+TERTIARY ACCENT:
+#e53170
+
+The overall design language should combine:
+
+* Apple-level smoothness
+* Stripe-level cleanliness
+* Linear.app animations
+* Webflow award-winning interactions
+* Framer motion effects
+* Cyberpunk luxury aesthetic
+* Premium startup landing page structure
+* Glassmorphism + soft glow effects
+* Floating gradients and animated particles
+
+The website should feel alive with micro-interactions everywhere.
+
+========================================
+GLOBAL DESIGN STYLE
+===================
+
+* Use ultra smooth scrolling
+* Add scroll-linked animations
+* Add floating blurred gradient orbs in background
+* Add animated noise texture overlay
+* Add glassmorphism cards
+* Add premium hover animations
+* Add magnetic button hover effects
+* Add subtle mouse-follow glow
+* Add animated grid background
+* Add animated gradient borders
+* Add parallax movement
+* Add floating neon shadows
+* Add cinematic section transitions
+* Add depth using layered lighting
+* Add subtle motion blur effects
+* Add soft radial glows behind elements
+* Add animated particles moving slowly in hero background
+* Add premium loading animation
+* Add smooth fade + upward reveal animations for sections
+* Use modern rounded corners (24px+)
+* Add premium typography spacing
+* Add floating reflections on cards
+* Add interactive card hover tilt effect
+
+Typography should be extremely modern:
+
+* Large bold headings
+* Minimal clean body text
+* Strong spacing hierarchy
+* Futuristic geometric font style
+* Massive hero typography
+* Oversized branding text
+* Elegant thin subtitles
+
+========================================
+NAVBAR
+======
+
+Create a floating glassmorphism navbar.
+
+Navbar should:
+
+* Stay fixed on scroll
+* Have blurred transparent background
+* Have thin glowing border
+* Slight transparency
+* Rounded pill shape
+* Smooth hover interactions
+
+Navbar left:
+EarnX logo with animated glowing icon
+
+Navbar center:
+Home
+Methods
+Tools
+Success Stories
+Leaderboard
+Community
+
+Navbar right:
+Sign In button
+Get Started CTA button with glowing orange gradient
+
+Add smooth underline animation on nav hover.
+
+========================================
+HERO SECTION
+============
+
+Create an absolutely stunning hero section.
+
+Background:
+
+* Animated dark gradient
+* Floating glowing particles
+* Moving blurred gradient lights
+* Animated mesh gradient
+* Subtle grid lines
+
+Center hero content:
+Small top badge:
+“#1 AI Powered Money Platform”
+
+Huge headline:
+“Turn Skills Into Income.”
+
+Second line:
+“Earn Smarter. Faster. Limitlessly.”
+
+Subheadline:
+“Discover premium earning opportunities through investing, instant tasks, and content monetization.”
+
+CTA Buttons:
+
+* Start Earning
+* Watch Demo
+
+Buttons should have:
+
+* Hover glow
+* Depth animations
+* Magnetic interactions
+* Ripple effect
+
+Add futuristic dashboard mockup on right side:
+
+* Floating charts
+* Income analytics
+* Animated graphs
+* Live earnings counters
+* Neon highlights
+
+Dashboard should slightly float up/down continuously.
+
+========================================
+MEGA BRANDING TEXT SECTION
+==========================
+
+Below hero section create a HUGE typography branding strip.
+
+The word:
+EARNX
+
+Must:
+
+* Cover almost full screen width
+* Use ultra-bold typography
+* Have animated gradient texture
+* Slight transparency
+* Background clipping effect
+* Glow edges
+* Parallax movement on scroll
+
+This section should feel like premium luxury websites.
+
+Add moving light sweep animation across text.
+
+========================================
+FLOATING CATEGORY BAR
+=====================
+
+Create a floating segmented category bar in center.
+
+3 sections:
+
+1. Invest
+2. Instant
+3. Videos
+
+Each tab should:
+
+* Have glowing hover state
+* Animated icon
+* Smooth transition
+* Active neon indicator
+* Glassmorphism background
+
+When hovering:
+
+* Background lights up
+* Small particles appear
+* Icon animates
+
+Each category card preview below:
+INVEST:
+
+* Stocks
+* Crypto
+* AI investing
+* Passive income
+
+INSTANT:
+
+* Freelancing
+* Surveys
+* AI tasks
+* Micro jobs
+
+VIDEOS:
+
+* YouTube automation
+* Shorts monetization
+* Content creation
+* Streaming
+
+Cards should animate in with stagger effect.
+
+========================================
+FEATURE SECTIONS
+================
+
+Create multiple premium sections.
+
+SECTION 1:
+“How EarnX Works”
+
+Use 3D cards connected with glowing lines.
+
+3 steps:
+Learn
+Build
+Earn
+
+Each card:
+
+* Floating
+* Interactive
+* Glow on hover
+* Animated icons
+
+========================================
+SECTION 2:
+LIVE EARNINGS DASHBOARD
+=======================
+
+Add:
+
+* Animated counters
+* Live charts
+* Revenue growth
+* User statistics
+* Active users online
+* Trending earning methods
+
+Use:
+
+* Neon orange graphs
+* Dark premium panels
+* Smooth number counting animation
+
+========================================
+SECTION 3:
+TOP EARNING METHODS
+===================
+
+Create futuristic Bento Grid layout.
+
+Cards:
+
+* AI Content Creation
+* Crypto Investing
+* Affiliate Marketing
+* Freelancing
+* UGC Content
+* Dropshipping
+* Video Editing
+* Trading
+
+Each card should:
+
+* Expand on hover
+* Have animated background
+* Use gradient glow borders
+* Include small animated icons
+
+========================================
+SECTION 4:
+SUCCESS STORIES
+===============
+
+Create premium testimonial carousel.
+
+Use:
+
+* Glass cards
+* Profile images
+* Floating glow
+* Smooth slide transitions
+* Rating stars
+* Income milestones
+
+Example:
+“Made $12,000 in 4 months”
+
+========================================
+SECTION 5:
+VIDEO PREVIEW AREA
+==================
+
+Add cinematic video showcase area.
+
+Features:
+
+* Floating video cards
+* Hover autoplay preview
+* Neon play buttons
+* Depth shadows
+* Animated borders
+
+========================================
+SECTION 6:
+COMMUNITY + LEADERBOARD
+=======================
+
+Create futuristic leaderboard UI.
+
+Include:
+
+* Top earners
+* Weekly rankings
+* Animated progress bars
+* XP levels
+* Achievement badges
+
+========================================
+FOOTER
+======
+
+Massive premium footer.
+
+Include:
+
+* Huge EarnX branding
+* Social links
+* Animated hover effects
+* Newsletter subscription
+* Gradient divider lines
+* Floating particles
+
+Add huge faded background text:
+“CREATE WEALTH”
+
+========================================
+ADVANCED ANIMATIONS
+===================
+
+Must include:
+
+* Framer Motion animations
+* GSAP smooth scrolling
+* Scroll-triggered reveals
+* Text reveal animations
+* Floating elements
+* Mouse reactive gradients
+* Neon pulse effects
+* Morphing backgrounds
+* Infinite subtle motion
+* Smooth page transitions
+* Dynamic shadows
+* Layered motion effects
+* 3D hover transformations
+
+========================================
+MOBILE RESPONSIVENESS
+=====================
+
+Must be fully responsive:
+
+* Premium mobile UI
+* Floating mobile navbar
+* Smooth transitions
+* Touch-friendly interactions
+* Optimized animations
+
+========================================
+OVERALL FEEL
+============
+
+The final website should feel:
+
+* Ultra premium
+* Addictive
+* Cinematic
+* Futuristic
+* Expensive
+* Smooth
+* Luxury-tech
+* Modern startup
+* AI-powered
+* Web3 inspired
+* Viral and visually unforgettable
+
+Avoid generic templates.
+Avoid basic layouts.
+Avoid flat boring sections.
+
+Everything should feel animated, premium, immersive, and visually elite.
+
+Use layered lighting, premium spacing, futuristic interactions, cinematic visuals, and award-winning modern UI aesthetics throughout the entire website.
+
+Color inspiration reference:
+[Happy Hues Palette 13](https://www.happyhues.co/palettes/13?utm_source=chatgpt.com) ([happyhues.co][1])
+
+[1]: https://www.happyhues.co/palettes/13?utm_source=chatgpt.com "Happy Hues - Curated colors in context."
